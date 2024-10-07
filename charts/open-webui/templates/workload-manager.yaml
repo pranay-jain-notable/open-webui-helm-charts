@@ -127,8 +127,10 @@ spec:
           value: http://{{ .Chart.Name }}-tika:9998
         {{- end }}
         tty: true
+      {{- if .Values.sidecarContainers }}
+       {{- toYaml .Values.sidecarContainers | nindent 6 }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
-      nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.tolerations }}
